@@ -1,32 +1,16 @@
 from django.shortcuts import render
+from django.views.generic import ListView
 
 from django.views.generic.edit import CreateView
 
 # Create your views here.
 from blogposting.models import Author, Course
 
-
-def index(request):
-    author = Author.objects.all()
-    context = {
-        "author": author
-    }
-    return render(request, 'blogposting/index.html', context=context)
+# view for list of courses for template courses_list.html
+class Courses(ListView):
+    model = Course
 
 
-def courses_list(request):
-    courses_list = Course.objects.all()
-    context = {
-        "courses": courses_list
-    }
-    return render(request, 'blogposting/courses_list.html', context=context)
-
-def course(request):
-    course = Course.objects.filter()
-    context = {
-
-    }
-    return render(request, 'blogposting/course.html', context=context)
 
 
 class CourseCreateView(CreateView):

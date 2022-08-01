@@ -79,6 +79,9 @@ class Course(models.Model):
     specialisation = models.ForeignKey(Specialisation, blank=False, on_delete=models.CASCADE)
     study_organizations = models.ManyToManyField(StudyOrganization, blank=False)
 
+    def __str__(self):
+        return f"'{self.course_name}' for specialisation - {self.specialisation.specialisation_name}"
+
 
 class Student(Person):
     study_organization = models.ForeignKey(StudyOrganization, blank=True, on_delete=models.CASCADE)
@@ -86,4 +89,3 @@ class Student(Person):
 
 
 #TODO: Как сделать расписание занятий ?
-#TODO: Заполнить базу тестовыми или реальными данными (попробывать написать под это все pytest)
