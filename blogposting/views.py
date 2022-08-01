@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
+from django.views.generic.edit import CreateView
+
 # Create your views here.
 from blogposting.models import Author, Course
 
@@ -25,3 +27,8 @@ def course(request):
 
     }
     return render(request, 'blogposting/course.html', context=context)
+
+
+class CourseCreateView(CreateView):
+    model = Course
+    fields = ['course_name', 'authors', 'specialisation', 'study_organizations']

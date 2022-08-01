@@ -7,5 +7,5 @@ urlpatterns = [
     path('', blogposting.index, name='index'),
     path('courses/', blogposting.courses_list, name='courses_list'),
     path('course/<int:pk>/', blogposting.course, name='course'),
-
+    path('course/create/', blogposting.CourseCreateView.as_view())
 ]
