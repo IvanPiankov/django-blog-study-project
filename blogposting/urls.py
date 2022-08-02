@@ -10,5 +10,8 @@ urlpatterns = [
          name='course_detail'),
     path('course/create/',
          blogposting.CourseCreateView.as_view(template_name='blogposting/create_course.html'),
-         name='create_course')
+         name='create_course'),
+    path('course/<int:pk>/edit/',
+         blogposting.CourseUpdateView.as_view(template_name='blogposting/update_course.html'),
+         name='update_course')
 ]
