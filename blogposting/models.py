@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.urls import reverse
 
 
 class StudyOrganization(models.Model):
@@ -81,6 +82,9 @@ class Course(models.Model):
 
     def __str__(self):
         return f"'{self.course_name}' for specialisation - {self.specialisation.specialisation_name}"
+
+    def get_absolute_url(self):
+        return reverse('blogposting:course_detail', args=[self.pk])
 
 
 class Student(Person):

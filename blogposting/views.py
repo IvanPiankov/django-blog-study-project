@@ -16,7 +16,8 @@ class Courses(ListView):
 class ReadCourse(DetailView):
     model = Course
 
-#
-# class CourseCreateView(CreateView):
-#     model = ReadCourse
-#     fields = ['course_name', 'authors', 'specialisation', 'study_organizations']
+
+# add class view for create course object
+class CourseCreateView(CreateView):
+    model = Course
+    fields = ['course_name', 'authors', 'specialisation', 'study_organizations']
