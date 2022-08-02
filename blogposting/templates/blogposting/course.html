@@ -2,11 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Course Detail</title>
 </head>
 <body>
 {{ object.authors }}
 <br>
 {{ object.course_name }}
+<br>
+<form action="{% url 'blogposting:update_course' object.pk %}">
+    <input type="submit" value="Change course" />
+</form>
+<br>
+<form action="{% url 'blogposting:delete_course' object.pk %}">
+    <input type="submit" value="Delete course" />
+</form>
 </body>
 </html>

@@ -13,5 +13,9 @@
         </a>
     </li>
 {% endfor %}
+<br>
+<form action="{% url 'blogposting:create_course'%}">
+    <input type="submit" value="Create course" />
+</form>
 </body>
 </html>
