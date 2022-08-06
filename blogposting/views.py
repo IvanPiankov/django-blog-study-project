@@ -47,6 +47,11 @@ class CourseDeleteView(DeleteView):
 class AuthorsList(ListView):
     model = Author
 
+# # for next homework
+#     def get_queryset(self):
+#         qs = super().get_queryset()
+#         qs = qs.select_related("user").prefetch_related('study_organizations')
+#         return qs
 
 class AuthorDetail(DetailView):
     model = Author
