@@ -11,6 +11,12 @@ from blogposting.models import Course
 class Courses(ListView):
     model = Course
 
+# for next homework
+    # def get_queryset(self):
+    #     qs = super().get_queryset()
+    #     qs = qs.select_related("specialisation")
+    #     return qs
+
 
 # view for every course in courses list
 class ReadCourse(DetailView):

@@ -1,5 +1,6 @@
-from django.urls import path
+from django.urls import path, include
 import blogposting.views as blogposting
+from djangoblogproject.settings import DEBUG
 
 app_name = "blogposting"
 
