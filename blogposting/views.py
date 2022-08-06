@@ -4,7 +4,7 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 # Create your views here.
-from blogposting.models import Course
+from blogposting.models import Course, Author
 
 
 # view for list of courses for template courses_list.html
@@ -12,10 +12,10 @@ class Courses(ListView):
     model = Course
 
 # for next homework
-    # def get_queryset(self):
-    #     qs = super().get_queryset()
-    #     qs = qs.select_related("specialisation")
-    #     return qs
+#     def get_queryset(self):
+#         qs = super().get_queryset()
+#         qs = qs.select_related('specialisation')
+#         return qs
 
 
 # view for every course in courses list
@@ -39,3 +39,16 @@ class CourseUpdateView(UpdateView):
 class CourseDeleteView(DeleteView):
     model = Course
     success_url = reverse_lazy("blogposting:courses_list")
+
+
+# author part
+
+class AuthorsList(ListView):
+    model = Author
+
+class AuthorDetail(DetailView):
+    model = DetailView
+
+class CreateAuthor(CreateView):
+    model = Author
+    form_class = ...

@@ -1,0 +1,17 @@
+{% extends "blogposting/base.html" %}
+{% block title %}Authors List{% endblock %}
+
+{% block content %}
+    <h2>Author list</h2>
+    {% for object in object_list %}
+        <li>
+            <a href="{% url 'blogposting:author_detail' object.pk %}">
+                {{ object }}
+            </a>
+        </li>
+    {% endfor %}
+    <br>
+    <form action="{% url 'blogposting:create_author'%}">
+        <input type="submit" value="Create author" />
+    </form>
+{% endblock %}
