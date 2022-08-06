@@ -5,16 +5,36 @@
     <title>Course Detail</title>
 </head>
 <body>
-{{ object.authors }}
-<br>
-{{ object.course_name }}
-<br>
+<h2 style="padding: 10px">
+    {{ object.course_name }}
+</h2>
+<div style="padding: 10px">
+    Специализация по курсу - {{ object.specialisation.specialisation_name}}
+</div>
+
+<div style="padding: 10px">
+    Учебные заведения:
+        {% for org_name in object.study_organizations.values %}
+                {{ org_name.organization_name}}
+        {% endfor %}
+</div>
+
+<div style="padding: 10px">
+    Авторы:
+        {% for author_name in object.authors.all %}
+                {{ author_name}}
+        {% endfor %}
+</div>
+
+<div style="padding: 10px">
 <form action="{% url 'blogposting:update_course' object.pk %}">
     <input type="submit" value="Change course" />
 </form>
-<br>
+</div>
+<div style="padding: 10px">
 <form action="{% url 'blogposting:delete_course' object.pk %}">
     <input type="submit" value="Delete course" />
 </form>
+</div>
 </body>
 </html>

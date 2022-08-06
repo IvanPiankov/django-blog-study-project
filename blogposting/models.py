@@ -56,7 +56,7 @@ class Author(Person):
     study_organizations = models.ManyToManyField(StudyOrganization, blank=True)
 
     def __str__(self):
-        return f" Author <{self.user}>"
+        return f"{self.user}"
 
 
 class Article(models.Model):
