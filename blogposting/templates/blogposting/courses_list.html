@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "blogposting/base.html" %}
+
+{% block title %}Course list{% endblock title %}
+
+{% block content %}
 <h2>Courses list</h2>
 {% for object in object_list %}
     <li>
@@ -17,5 +15,4 @@
 <form action="{% url 'blogposting:create_course'%}">
     <input type="submit" value="Create course" />
 </form>
-</body>
-</html>
+{% endblock %}

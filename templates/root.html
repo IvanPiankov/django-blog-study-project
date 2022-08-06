@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Courses Site{% endblock title %}</title>
+    {% block css %}
+    {% endblock %}
+    {% block js%}
+    {% endblock %}
+</head>
+<body>
+{% block header %}
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+
+{% block footer %}
+    <h3>Course Study organization, {% now "Y" %}</h3>
+{% endblock %}
+
+</body>
+</html>

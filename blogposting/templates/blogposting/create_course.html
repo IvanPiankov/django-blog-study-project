@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Course create</title>
-</head>
-<body>
+{% extends "blogposting/base.html" %}
+
+{% block title %}Create Course{% endblock title %}
+
+{% block content %}
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Save">
 </form>
-</body>
-</html>
+{% endblock%}
