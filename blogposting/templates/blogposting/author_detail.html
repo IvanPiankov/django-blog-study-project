@@ -1,0 +1,24 @@
+{% extends "blogposting/base.html" %}
+{% block title %}
+    Author Detail
+{% endblock %}
+
+{% block content %}
+    <h2 style="padding: 10px">
+    {{ object.user}}
+</h2>
+<div style="padding: 10px">
+    Тип образования  - {{ object.status}}
+
+</div>
+<div style="padding: 10px">
+    Курсы:
+        {% for course in object.course_set.all  %}
+            <li>
+                <a href="{% url 'blogposting:course_detail' course.pk %}">
+                    {{ course }}
+                </a>
+            </li>
+        {% endfor %}
+</div>
+{% endblock %}

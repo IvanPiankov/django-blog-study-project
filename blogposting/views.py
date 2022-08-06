@@ -47,7 +47,7 @@ class AuthorsList(ListView):
     model = Author
 
 class AuthorDetail(DetailView):
-    model = DetailView
+    model = Author
 
 class CreateAuthor(CreateView):
     model = Author
