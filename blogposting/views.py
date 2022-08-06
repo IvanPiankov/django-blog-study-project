@@ -4,6 +4,7 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 # Create your views here.
+from blogposting.forms import AuthorForms
 from blogposting.models import Course, Author
 
 
@@ -46,9 +47,11 @@ class CourseDeleteView(DeleteView):
 class AuthorsList(ListView):
     model = Author
 
+
 class AuthorDetail(DetailView):
     model = Author
 
+
 class CreateAuthor(CreateView):
     model = Author
-    form_class = ...
+    form_class = AuthorForms
