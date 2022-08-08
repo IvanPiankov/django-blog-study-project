@@ -12,15 +12,15 @@
 
 <div style="padding: 10px">
     Учебные заведения:
-        {% for org_name in object.study_organizations.values %}
-                {{ org_name.organization_name}}
+        {% for org_name in study_organizations_name %}
+                {{ study_organizations_name}}
         {% endfor %}
 </div>
 
 <div style="padding: 10px">
     Авторы:
-        {% for author_name in object.authors.all %}
-                {{ author_name}}
+        {% for author_name in authors_name %}
+                {{ author_name }}
         {% endfor %}
 </div>
 

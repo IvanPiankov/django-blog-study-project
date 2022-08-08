@@ -13,15 +13,29 @@ class Courses(ListView):
     model = Course
 
 # for next homework
-#     def get_queryset(self):
-#         qs = super().get_queryset()
-#         qs = qs.select_related('specialisation')
-#         return qs
+    def get_queryset(self):
+        qs = super().get_queryset()
+        qs = qs.select_related('specialisation')
+        return qs
 
 
 # view for every course in courses list
 class ReadCourse(DetailView):
     model = Course
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        qs = qs.select_related('specialisation').prefetch_related('authors')
+        return qs
+
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        data['authors_name'] = data['object'].\
+            authors.\
+            all().\
+            select_related("user").\
+            prefetch_related('study_organizations')
+        return data
 
 
 # add class view for create course object
@@ -48,13 +62,23 @@ class AuthorsList(ListView):
     model = Author
 
 # # for next homework
-#     def get_queryset(self):
-#         qs = super().get_queryset()
-#         qs = qs.select_related("user").prefetch_related('study_organizations')
-#         return qs
+    def get_queryset(self):
+        qs = super().get_queryset()
+        qs = qs.select_related("user").prefetch_related('study_organizations')
+        return qs
+
 
 class AuthorDetail(DetailView):
     model = Author
+
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        data['course_set'] = data['object'].\
+            course_set.\
+            all().\
+            select_related("specialisation").\
+            only("pk", "course_name", "specialisation__specialisation_name")
+        return data
 
 
 class CreateAuthor(CreateView):
