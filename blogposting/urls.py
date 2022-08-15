@@ -1,5 +1,6 @@
-from django.urls import path
+from django.urls import path, include
 import blogposting.views as blogposting
+from djangoblogproject.settings import DEBUG
 
 app_name = "blogposting"
 
@@ -18,5 +19,15 @@ urlpatterns = [
          name='update_course'),
     path('course/<int:pk>/delete/',
          blogposting.CourseDeleteView.as_view(template_name='blogposting/delete_course.html'),
-         name='delete_course')
+         name='delete_course'),
+    path('authors/',
+         blogposting.AuthorsList.as_view(template_name='blogposting/authors_list.html'),
+         name='authors_list'),
+    path('author/<int:pk>/',
+         blogposting.AuthorDetail.as_view(template_name='blogposting/author_detail.html'),
+         name='author_detail'),
+    path('author/create/',
+         blogposting.CreateAuthor.as_view(template_name='blogposting/create_author.html'),
+         name='create_author'),
+
 ]

@@ -19,6 +19,9 @@ class StudyOrganization(models.Model):
                                                choices=STATUS_CHOICES,
                                                default=ORGANIZATION_SH)
 
+    def __str__(self):
+        return f"{self.organization_name}"
+
 
 class Specialisation(models.Model):
     specialisation_name = models.CharField(max_length=150,
@@ -56,7 +59,13 @@ class Author(Person):
     study_organizations = models.ManyToManyField(StudyOrganization, blank=True)
 
     def __str__(self):
-        return f"{self.user}"
+        study_organization = ",".join([str(test) for test in self.study_organizations.all()])
+        if not study_organization:
+            study_organization = "Self educational organization"
+        return f"{self.user} with {self.status} status and works in {study_organization}"
+
+    def get_absolute_url(self):
+        return reverse("blogposting:author_detail", args=[self.pk])
 
 
 class Article(models.Model):

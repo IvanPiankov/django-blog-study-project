@@ -16,7 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from djangoblogproject.settings import DEBUG
+
 urlpatterns = [
     path('', include('blogposting.urls', namespace="blogposting")),
     path('admin/', admin.site.urls),
 ]
+
+if DEBUG:
+    urlpatterns.append(path('__debug__/', include('debug_toolbar.urls')))
