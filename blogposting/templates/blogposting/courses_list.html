@@ -1,0 +1,18 @@
+{% extends "blogposting/base.html" %}
+
+{% block title %}Course list{% endblock title %}
+
+{% block content %}
+<h2>Courses list</h2>
+{% for object in object_list %}
+    <li>
+        <a href="{% url 'blogposting:course_detail' object.pk %}">
+            {{ object }}
+        </a>
+    </li>
+{% endfor %}
+<br>
+<form action="{% url 'blogposting:create_course'%}">
+    <input type="submit" value="Create course" />
+</form>
+{% endblock %}

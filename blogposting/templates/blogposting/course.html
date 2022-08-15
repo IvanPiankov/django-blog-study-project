@@ -1,0 +1,37 @@
+{% extends "blogposting/base.html" %}
+
+{% block title %}Course Detail{% endblock title %}
+
+{% block content %}
+<h2 style="padding: 10px">
+    {{ object.course_name }}
+</h2>
+<div style="padding: 10px">
+    Специализация по курсу - {{ object.specialisation.specialisation_name}}
+</div>
+
+<div style="padding: 10px">
+    Учебные заведения:
+        {% for org_name in study_organizations_name %}
+                {{ study_organizations_name}}
+        {% endfor %}
+</div>
+
+<div style="padding: 10px">
+    Авторы:
+        {% for author_name in authors_name %}
+                {{ author_name }}
+        {% endfor %}
+</div>
+
+<div style="padding: 10px">
+<form action="{% url 'blogposting:update_course' object.pk %}">
+    <input type="submit" value="Change course" />
+</form>
+</div>
+<div style="padding: 10px">
+<form action="{% url 'blogposting:delete_course' object.pk %}">
+    <input type="submit" value="Delete course" />
+</form>
+</div>
+{% endblock %}

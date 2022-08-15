@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.urls import reverse
 
 
 class StudyOrganization(models.Model):
@@ -17,6 +18,9 @@ class StudyOrganization(models.Model):
     type_study_organization = models.CharField(max_length=3,
                                                choices=STATUS_CHOICES,
                                                default=ORGANIZATION_SH)
+
+    def __str__(self):
+        return f"{self.organization_name}"
 
 
 class Specialisation(models.Model):
@@ -55,7 +59,13 @@ class Author(Person):
     study_organizations = models.ManyToManyField(StudyOrganization, blank=True)
 
     def __str__(self):
-        return f" Author <{self.user}>"
+        study_organization = ",".join([str(test) for test in self.study_organizations.all()])
+        if not study_organization:
+            study_organization = "Self educational organization"
+        return f"{self.user} with {self.status} status and works in {study_organization}"
+
+    def get_absolute_url(self):
+        return reverse("blogposting:author_detail", args=[self.pk])
 
 
 class Article(models.Model):
@@ -79,6 +89,12 @@ class Course(models.Model):
     specialisation = models.ForeignKey(Specialisation, blank=False, on_delete=models.CASCADE)
     study_organizations = models.ManyToManyField(StudyOrganization, blank=False)
 
+    def __str__(self):
+        return f"'{self.course_name}' for specialisation - {self.specialisation.specialisation_name}"
+
+    def get_absolute_url(self):
+        return reverse('blogposting:course_detail', args=[self.pk])
+
 
 class Student(Person):
     study_organization = models.ForeignKey(StudyOrganization, blank=True, on_delete=models.CASCADE)
@@ -86,4 +102,3 @@ class Student(Person):
 
 
 #TODO: Как сделать расписание занятий ?
-#TODO: Заполнить базу тестовыми или реальными данными (попробывать написать под это все pytest)
