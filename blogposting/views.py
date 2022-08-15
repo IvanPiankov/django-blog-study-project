@@ -1,10 +1,10 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView
 
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 
 # Create your views here.
-from blogposting.forms import AuthorForms
+from blogposting.forms import AuthorForms, SendEmailForms
 from blogposting.models import Course, Author
 
 
@@ -84,3 +84,8 @@ class AuthorDetail(DetailView):
 class CreateAuthor(CreateView):
     model = Author
     form_class = AuthorForms
+
+
+class SendEmail(FormView):
+    form_class = SendEmailForms
+    success_url = '/courses/'

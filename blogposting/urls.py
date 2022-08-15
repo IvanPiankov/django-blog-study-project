@@ -29,5 +29,7 @@ urlpatterns = [
     path('author/create/',
          blogposting.CreateAuthor.as_view(template_name='blogposting/create_author.html'),
          name='create_author'),
+    path('feedback/', blogposting.SendEmail.as_view(template_name='blogposting/feedback.html'),
+         name='feedback')
 
 ]
