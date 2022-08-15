@@ -3,6 +3,7 @@ from django.core.exceptions import ValidationError
 from django.forms import ModelForm
 
 from blogposting.models import Author
+from blogposting.tasks import send_feedback_email
 
 
 class AuthorForms(ModelForm):
@@ -24,3 +25,8 @@ class SendEmailForms(forms.Form):
     message = forms.CharField(
         label="Message", widget=forms.Textarea(attrs={'rows': 5})
     )
+
+    def send_email(self):
+        send_feedback_email.delay(
+            self.cleaned_data['email'], self.cleaned_data['message']
+        )

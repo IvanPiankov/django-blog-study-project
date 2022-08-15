@@ -89,3 +89,7 @@ class CreateAuthor(CreateView):
 class SendEmail(FormView):
     form_class = SendEmailForms
     success_url = '/courses/'
+
+    def form_valid(self, form):
+        form.send_email()
+        return super().form_valid(form)
