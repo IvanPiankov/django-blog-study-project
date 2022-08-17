@@ -136,3 +136,8 @@ INTERNAL_IPS = [
     "localhost",
     "127.0.0.1"
 ]
+# Add links for backend and AQMP broker
+CELERY_BROKER_URL = "redis://localhost:6379"
+CELERY_RESULT_BACKEND = "redis://localhost:6379"
+# Email placeholder setting
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
