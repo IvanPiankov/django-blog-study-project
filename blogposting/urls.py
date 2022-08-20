@@ -1,5 +1,6 @@
 from django.urls import path, include
 import blogposting.views as blogposting
+from blogposting.routers import app_router
 from djangoblogproject.settings import DEBUG
 
 app_name = "blogposting"
@@ -32,4 +33,5 @@ urlpatterns = [
     path('feedback/', blogposting.SendEmail.as_view(template_name='blogposting/feedback.html'),
          name='feedback')
 
+    path('', include(app_router.urls)),
 ]
