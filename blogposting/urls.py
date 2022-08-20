@@ -1,5 +1,6 @@
 from django.urls import path, include
 import blogposting.views as blogposting
+from blogposting.routers import app_router
 from djangoblogproject.settings import DEBUG
 
 app_name = "blogposting"
@@ -29,5 +30,5 @@ urlpatterns = [
     path('author/create/',
          blogposting.CreateAuthor.as_view(template_name='blogposting/create_author.html'),
          name='create_author'),
-
+    path('', include(app_router.urls)),
 ]
