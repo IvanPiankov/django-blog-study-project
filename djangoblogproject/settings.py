@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv, find_dotenv
+# Only for Django 4.0
+import django
+from django.utils.encoding import force_str
+django.utils.encoding.force_text = force_str
 
 load_dotenv(find_dotenv())
 
@@ -42,10 +46,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # side
     "debug_toolbar",
     'rest_framework.authtoken',
     "rest_framework",
-    'blogposting',
+    "graphene_django",
+    # my app
+    'blogposting'
 ]
 
 MIDDLEWARE = [
@@ -152,4 +159,8 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ]
+}
+
+GRAPHENE = {
+    "SCHEMA": "djangoblogproject.schema.schema"
 }
