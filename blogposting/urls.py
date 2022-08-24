@@ -1,5 +1,8 @@
 from django.urls import path, include
+from rest_framework.authtoken.views import obtain_auth_token
+
 import blogposting.views as blogposting
+from blogposting.routers import app_router
 from djangoblogproject.settings import DEBUG
 
 app_name = "blogposting"
@@ -30,6 +33,8 @@ urlpatterns = [
          blogposting.CreateAuthor.as_view(template_name='blogposting/create_author.html'),
          name='create_author'),
     path('feedback/', blogposting.SendEmail.as_view(template_name='blogposting/feedback.html'),
-         name='feedback')
+         name='feedback'),
 
+    path('', include(app_router.urls)),
+    path('api-token-auth/', obtain_auth_token)
 ]
